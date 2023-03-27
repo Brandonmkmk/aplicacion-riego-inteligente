@@ -17,59 +17,58 @@ class inicioSesion extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                  margin: EdgeInsets.all(30),
-                  child: CircleAvatar(
+                  margin: const EdgeInsets.all(30),
+                  child: const CircleAvatar(
                     maxRadius: 60,
-                    backgroundImage: NetworkImage(
-                        'https://tse4.mm.bing.net/th?id=OIP.TFhkpJd_yodnSHBEbkaBVQAAAA&pid=Api&P=0'),
+                    backgroundImage: AssetImage('assets/logo.png'),
                   ))
             ],
           ),
           Container(
-              padding: EdgeInsets.all(25),
+              padding: const EdgeInsets.all(25),
               child: TextField(
                 controller: usuario,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.person,
                     color: Colors.green,
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                         color: Color.fromARGB(255, 3, 83, 6), width: 2),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   hintText: 'usuario',
-                  hintStyle: TextStyle(color: Colors.black, fontSize: 15),
+                  hintStyle: const TextStyle(color: Colors.black, fontSize: 15),
                 ),
-                style: TextStyle(color: Colors.green),
+                style: const TextStyle(color: Colors.green),
               )),
           Container(
-              padding: EdgeInsets.all(25),
+              padding: const EdgeInsets.all(25),
               child: TextField(
                 controller: password,
                 decoration: InputDecoration(
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.block,
                       color: Colors.green,
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                           color: Color.fromARGB(255, 3, 83, 6), width: 2),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     hintText: 'Clave',
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                       color: Colors.black,
                       fontSize: 15,
                     )),
                 obscureText: true,
               )),
           Container(
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
             alignment: Alignment.center,
             child: IconButton(
-              icon: Icon(Icons.login),
+              icon: const Icon(Icons.login),
               color: Colors.green,
               onPressed: () {
                 user = usuario.text;
@@ -81,7 +80,7 @@ class inicioSesion extends StatelessWidget {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return AlertDialog(
+                        return const AlertDialog(
                           title: Text(
                             'Ocurrio un error',
                             style: TextStyle(
@@ -99,7 +98,7 @@ class inicioSesion extends StatelessWidget {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return AlertDialog(
+                        return const AlertDialog(
                           title: Text(
                             'Error al iniciar sesion',
                             style: TextStyle(color: Colors.black, fontSize: 20),
@@ -115,10 +114,10 @@ class inicioSesion extends StatelessWidget {
             ),
           ),
           Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               alignment: Alignment.center,
               child: IconButton(
-                  icon: Icon(Icons.person_add),
+                  icon: const Icon(Icons.person_add),
                   color: Colors.green,
                   onPressed: () {
                     Navigator.pushNamed(context, 'registro');

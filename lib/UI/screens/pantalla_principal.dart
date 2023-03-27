@@ -38,14 +38,14 @@ class _HomeScreenState extends State<HomeScreen> {
             selectIndex = value;
           });
         },
-        items: [
-          const BottomNavigationBarItem(
+        items: const [
+          BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
                 color: Colors.green,
               ),
               label: 'Inicio'),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(
               Icons.settings,
               color: Colors.green,

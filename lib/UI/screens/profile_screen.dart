@@ -8,20 +8,22 @@ class Perfil extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          title: Center(
-            child: Text(
-              'Mi perfil',
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-        ),
+            elevation: 0,
+            backgroundColor: Colors.white,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: const [
+                Text(
+                  'Perfil',
+                  style: TextStyle(color: Colors.black),
+                )
+              ],
+            )),
         body: ListView(
           children: [
             Container(
-                margin: EdgeInsets.all(30),
-                child: CircleAvatar(
+                margin: const EdgeInsets.all(30),
+                child: const CircleAvatar(
                   backgroundColor: Colors.green,
                   maxRadius: 60,
                   child: Icon(
@@ -29,22 +31,22 @@ class Perfil extends StatelessWidget {
                   ),
                 )),
             Container(
-              margin: EdgeInsets.all(15),
+              margin: const EdgeInsets.all(15),
               child: ListTile(
-                  title: Text(
+                  title: const Text(
                     'nombre de usuario',
                     style: TextStyle(color: Colors.black),
                   ),
-                  subtitle: Text(
+                  subtitle: const Text(
                     'Universdiad Tecnologica de Tlaxcala',
                     style: TextStyle(color: Colors.black),
                   ),
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.person,
                     color: Colors.green,
                   ),
                   trailing: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.edit,
                       color: Colors.green,
                     ),

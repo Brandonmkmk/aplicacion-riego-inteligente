@@ -20,9 +20,10 @@ class Registrar extends StatelessWidget {
             children: [
               Container(
                   margin: const EdgeInsets.all(30),
-                  child: Text(
-                    'Crea tu cuenta',
-                    style: TextStyle(color: Colors.green, fontSize: 40),
+                  child: const CircleAvatar(
+                    maxRadius: 60,
+                    backgroundImage: NetworkImage(
+                        'https://tse2.mm.bing.net/th?id=OIP.628EcX0iP3KrQ_oDapiMewAAAA&pid=Api&P=0'),
                   ))
             ],
           ),

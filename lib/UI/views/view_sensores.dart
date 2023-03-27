@@ -38,8 +38,8 @@ class configuracionView extends StatelessWidget {
               alignment: Alignment.center,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text('¿Quieres activar el riego de manera manual?')
+                children: const [
+                  Text('¿Quieres activar el riego de manera manual?')
                 ],
               ),
             ),
