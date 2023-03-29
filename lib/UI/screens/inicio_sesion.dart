@@ -1,11 +1,57 @@
 import 'package:aplicacion_riego/UI/screens/registro_usuario.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class inicioSesion extends StatelessWidget {
-  final usuario = TextEditingController();
-  final password = TextEditingController();
-  String user = '';
-  String contra = '';
+class inicioSesion extends StatefulWidget {
+  const inicioSesion({super.key});
+
+  @override
+  State<inicioSesion> createState() => _inicioSesionState();
+}
+
+class _inicioSesionState extends State<inicioSesion> {
+  TextEditingController name = TextEditingController();
+  TextEditingController clave = TextEditingController();
+
+  validarDatos() async {
+    try {
+      //trae una instancia de la coleccion de la base de datos
+      CollectionReference ref = FirebaseFirestore.instance.collection('users');
+      QuerySnapshot usuario = await ref.get();
+
+      //si hay documentos en la coleccion usuarios
+      if (usuario.docs.length != 0) {
+        for (var cursor in usuario.docs) {
+          if (cursor.get('nombre') == name.text &&
+              cursor.get('clave') == clave.text) {
+            Navigator.pushNamed(context, 'paginaPrincipal');
+            break;
+          } else if (cursor.get('nombre') != name.text ||
+              cursor.get('clave') != clave.text) {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return const AlertDialog(
+                    title: Text(
+                      'Ocurrio un error',
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'rbold',
+                          color: Colors.black),
+                    ),
+                    content: Text(
+                      'nombre o clave invalidos',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  );
+                });
+          }
+        }
+      }
+    } catch (e) {
+      print('error' + e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +73,7 @@ class inicioSesion extends StatelessWidget {
           Container(
               padding: const EdgeInsets.all(25),
               child: TextField(
-                controller: usuario,
+                controller: name,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(
                     Icons.person,
@@ -46,7 +92,7 @@ class inicioSesion extends StatelessWidget {
           Container(
               padding: const EdgeInsets.all(25),
               child: TextField(
-                controller: password,
+                controller: clave,
                 decoration: InputDecoration(
                     prefixIcon: const Icon(
                       Icons.block,
@@ -71,45 +117,7 @@ class inicioSesion extends StatelessWidget {
               icon: const Icon(Icons.login),
               color: Colors.green,
               onPressed: () {
-                user = usuario.text;
-                contra = password.text;
-
-                if (user == 'utt' && contra == 'utt1234') {
-                  Navigator.pushNamed(context, 'paginaPrincipal');
-                } else if (user == '' || contra == '') {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const AlertDialog(
-                          title: Text(
-                            'Ocurrio un error',
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontFamily: 'rbold',
-                                color: Colors.black),
-                          ),
-                          content: Text(
-                            'completa los datos requeridos',
-                            style: TextStyle(color: Colors.red),
-                          ),
-                        );
-                      });
-                } else {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const AlertDialog(
-                          title: Text(
-                            'Error al iniciar sesion',
-                            style: TextStyle(color: Colors.black, fontSize: 20),
-                          ),
-                          content: Text(
-                            'usuario o clave incorrecta',
-                            style: TextStyle(color: Colors.red),
-                          ),
-                        );
-                      });
-                }
+                validarDatos();
               },
             ),
           ),

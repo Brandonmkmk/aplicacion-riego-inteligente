@@ -1,13 +1,39 @@
+// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class Registrar extends StatelessWidget {
-  final nombre = TextEditingController();
-  final apellido = TextEditingController();
-  final clave = TextEditingController();
+class Registrar extends StatefulWidget {
+  const Registrar({super.key});
 
-  String user = '';
-  String apellidos = '';
-  String contra = '';
+  @override
+  State<Registrar> createState() => _RegistrarState();
+}
+
+class _RegistrarState extends State<Registrar> {
+  TextEditingController nombre = TextEditingController();
+  TextEditingController direccion = TextEditingController();
+  TextEditingController telefono = TextEditingController();
+  TextEditingController gmail = TextEditingController();
+  TextEditingController clave = TextEditingController();
+  //instancia de firebase
+  final firebase = FirebaseFirestore.instance;
+
+//funcion asincrona de registrar usuario en la base de datos
+  registroUsuario() async {
+    try {
+      //si existe la coleccion users los documentos
+      //si no existe se va a crear con ese nombre
+      await firebase.collection('users').doc().set({
+        'nombre': nombre.text,
+        'direccion': direccion.text,
+        'telefono': telefono.text,
+        'gmail': gmail.text,
+        'clave': clave.text,
+      });
+    } catch (e) {
+      print('error....' + e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,102 +48,163 @@ class Registrar extends StatelessWidget {
                   margin: const EdgeInsets.all(30),
                   child: const CircleAvatar(
                     maxRadius: 60,
-                    backgroundImage: NetworkImage(
-                        'https://tse2.mm.bing.net/th?id=OIP.628EcX0iP3KrQ_oDapiMewAAAA&pid=Api&P=0'),
+                    backgroundImage: AssetImage('assets/logo.png'),
                   ))
             ],
           ),
           Container(
-              padding: EdgeInsets.all(25),
+              padding: const EdgeInsets.all(25),
               child: TextField(
                 controller: nombre,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.person,
                     color: Colors.green,
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                         color: Color.fromARGB(255, 3, 83, 6), width: 2),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   hintText: 'Nombre',
-                  hintStyle: TextStyle(color: Colors.black, fontSize: 15),
+                  hintStyle: const TextStyle(color: Colors.black, fontSize: 15),
                 ),
-                style: TextStyle(color: Colors.green),
+                style: const TextStyle(color: Colors.green),
               )),
           Container(
-              padding: EdgeInsets.all(25),
+              padding: const EdgeInsets.all(25),
               child: TextField(
-                controller: apellido,
+                controller: direccion,
                 decoration: InputDecoration(
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.abc_rounded,
                       color: Colors.green,
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                           color: Color.fromARGB(255, 3, 83, 6), width: 2),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    hintText: 'apellidos',
-                    hintStyle: TextStyle(
+                    hintText: 'Direccion',
+                    hintStyle: const TextStyle(
                       color: Colors.black,
                       fontSize: 15,
                     )),
-                obscureText: true,
               )),
           Container(
-              padding: EdgeInsets.all(25),
+              padding: const EdgeInsets.all(25),
               child: TextField(
-                controller: clave,
+                controller: telefono,
                 decoration: InputDecoration(
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.block,
                       color: Colors.green,
                     ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                           color: Color.fromARGB(255, 3, 83, 6), width: 2),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    hintText: 'ingresa una clave unica',
-                    hintStyle: TextStyle(
+                    hintText: 'ingresa un numero de telefono',
+                    hintStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                    )),
+              )),
+          Container(
+              padding: const EdgeInsets.all(25),
+              child: TextField(
+                controller: gmail,
+                decoration: InputDecoration(
+                    prefixIcon: const Icon(
+                      Icons.block,
+                      color: Colors.green,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                          color: Color.fromARGB(255, 3, 83, 6), width: 2),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    hintText: 'ingresa tu gmail',
+                    hintStyle: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                    )),
+              )),
+          Container(
+              padding: const EdgeInsets.all(25),
+              child: TextField(
+                controller: clave,
+                decoration: InputDecoration(
+                    prefixIcon: const Icon(
+                      Icons.block,
+                      color: Colors.green,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                          color: Color.fromARGB(255, 3, 83, 6), width: 2),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    hintText: 'ingresa tu clave unica',
+                    hintStyle: const TextStyle(
                       color: Colors.black,
                       fontSize: 15,
                     )),
                 obscureText: true,
               )),
           Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               alignment: Alignment.center,
               child: IconButton(
-                  icon: Icon(Icons.login_outlined),
+                  icon: const Icon(Icons.login_outlined),
                   color: Colors.green,
                   onPressed: () {
-                    user = nombre.text;
-                    apellidos = apellido.text;
-                    contra = clave.text;
-
-                    if (user == '' || apellidos == '' || contra == '') {
+                    if (nombre.text == '' ||
+                        direccion.text == '' ||
+                        telefono.text == '' ||
+                        gmail.text == '' ||
+                        clave.text == '') {
                       showDialog(
                           context: context,
                           builder: (context) {
-                            return AlertDialog(
+                            return const AlertDialog(
                               title: Text(
                                 'Ocurrio un error',
-                                style: TextStyle(),
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: 'rbold',
+                                    color: Colors.black),
                               ),
                               content: Text(
-                                'rellena todos los campos que se te piden',
+                                'Rellena todos los campos que se piden',
                                 style: TextStyle(color: Colors.red),
                               ),
                             );
                           });
-                    } else if (user == nombre.text &&
-                        apellidos == apellido.text &&
-                        contra == clave.text) {
-                      Navigator.pushNamed(context, 'inicio');
+                    } else {
+                      registroUsuario();
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const AlertDialog(
+                              title: Text(
+                                'Exitoso',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: 'rbold',
+                                    color: Colors.black),
+                              ),
+                              content: Text(
+                                'Registro correctamente',
+                                style: TextStyle(color: Colors.green),
+                              ),
+                            );
+                          });
+                      nombre.clear();
+                      direccion.clear();
+                      telefono.clear();
+                      gmail.clear();
+                      clave.clear();
                     }
                   })),
         ],
