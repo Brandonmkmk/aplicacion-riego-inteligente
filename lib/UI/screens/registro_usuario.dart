@@ -183,6 +183,7 @@ class _RegistrarState extends State<Registrar> {
                           });
                     } else {
                       registroUsuario();
+                      Navigator.pushNamed(context, 'inicio');
                       showDialog(
                           context: context,
                           builder: (context) {
@@ -200,6 +201,7 @@ class _RegistrarState extends State<Registrar> {
                               ),
                             );
                           });
+
                       nombre.clear();
                       direccion.clear();
                       telefono.clear();

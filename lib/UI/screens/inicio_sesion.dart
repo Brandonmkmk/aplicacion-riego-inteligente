@@ -1,6 +1,8 @@
 import 'package:aplicacion_riego/UI/screens/registro_usuario.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class inicioSesion extends StatefulWidget {
   const inicioSesion({super.key});
@@ -130,6 +132,17 @@ class _inicioSesionState extends State<inicioSesion> {
                   onPressed: () {
                     Navigator.pushNamed(context, 'registro');
                   })),
+          // Container(
+          //     margin: const EdgeInsets.all(20),
+          //     alignment: Alignment.center,
+          //     child: MaterialButton(
+          //         child: Icon(FontAwesomeIcons.google),
+          //         textColor: Colors.green,
+          //         onPressed: () async {
+          //           User? user = await AutenticacionGoogle.iniciarSesion(
+          //               context: context);
+          //           print(user?.displayName);
+          //         })),
         ],
       ),
     );

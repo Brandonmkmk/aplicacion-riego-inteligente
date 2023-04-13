@@ -1,23 +1,17 @@
+import 'package:aplicacion_riego/Models/dht11_data.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
 
-class Sensor1 extends StatelessWidget {
+class Sensor1 extends StatefulWidget {
   const Sensor1({super.key});
 
   @override
+  State<Sensor1> createState() => _Sensor1State();
+}
+
+class _Sensor1State extends State<Sensor1> {
+  @override
   Widget build(BuildContext context) {
-    final Data = [
-      dht11(humedad: 10, suelo: 20),
-      dht11(humedad: 5, suelo: 3),
-      dht11(humedad: 15, suelo: 22)
-    ];
-    List<charts.Series<dht11, int>> series = [
-      charts.Series<dht11, int>(
-          id: 'linea 1',
-          domainFn: (v, i) => v.humedad,
-          measureFn: (v, i) => v.suelo,
-          data: Data)
-    ];
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -27,63 +21,26 @@ class Sensor1 extends StatelessWidget {
             style: TextStyle(color: Colors.black),
           ),
         ),
-        body: ListView(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(top: 30),
-              alignment: Alignment.center,
-              child: const Text(
-                'Datos recabados del sensor',
-                style: TextStyle(fontSize: 30),
-              ),
-            ),
-            SizedBox(
-              height: 250,
-              child: charts.LineChart(series),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 45),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment
-                    .center, //se centra el boton horizontalmente
-                children: [
-                  MaterialButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
-                    child: const Text(
-                      'Activar riego ',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    color: Colors.green,
-                    onPressed: () {},
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                          margin: const EdgeInsets.only(top: 20),
-                          child: Icon(
-                            Icons.schedule,
-                            color: Colors.green,
-                          )),
-                      Container(
-                          margin: const EdgeInsets.only(top: 6),
-                          child: const Expanded(
-                            child: Text(
-                                'Se recomienda activar el riego cuando el sensor DHT11 este menos del 50% de humedad'),
-                          ))
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ],
+        body: FutureBuilder(
+          future: getData(),
+          builder: ((context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                  itemCount: snapshot.data?.length,
+                  itemBuilder: (context, index) {
+                    return Center(
+                      child: Text(
+                        snapshot.data?[index]['humedad'],
+                        style: const TextStyle(color: Colors.black),
+                      ),
+                    );
+                  });
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
         ));
   }
-}
-
-class dht11 {
-  final int humedad;
-  final int suelo;
-
-  dht11({required this.humedad, required this.suelo});
 }

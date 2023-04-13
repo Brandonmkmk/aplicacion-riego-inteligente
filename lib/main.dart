@@ -1,4 +1,5 @@
 // import 'package:aplicacion_riego/Resources/connecting_data_base.dart';
+import 'package:aplicacion_riego/UI/screens/comentarios.dart';
 import 'package:aplicacion_riego/UI/screens/edit_profile.dart';
 import 'package:aplicacion_riego/UI/screens/inicio_sesion.dart';
 import 'package:aplicacion_riego/UI/screens/pantalla_principal.dart';
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
         'sensores': (contex) => const configuracionView(),
         'grafica_dht11': (context) => const Sensor1(),
         'grafica_humedad': (context) => const Humedad(),
-        'grafica_aire': (context) => const Aire()
+        'grafica_aire': (context) => const Aire(),
+        'comentarios': (context) => Comentarios(),
       },
     );
   }

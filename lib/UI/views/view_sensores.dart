@@ -31,7 +31,7 @@ class configuracionView extends StatelessWidget {
       body: Center(
         child: ListView(
           children: [
-            const datosSensores(),
+            datosSensores(),
 
             Container(
               margin: const EdgeInsets.only(top: 40),

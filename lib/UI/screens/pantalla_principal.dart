@@ -1,3 +1,4 @@
+import 'package:aplicacion_riego/UI/screens/comentarios.dart';
 import 'package:aplicacion_riego/UI/views/view_sensores.dart';
 import 'package:aplicacion_riego/UI/views/home_view.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,8 @@ class _HomeScreenState extends State<HomeScreen> {
   //estas son las 2 vistas que se quieren mostrar
   final screen = [
     homeView(), //=>ESTA ES LA VISTA PRINCIPAL, POR LA QUE SERA EL INDICE 0
-    configuracionView(), //=>ESTA ES EL INDICE 1
+    configuracionView(),
+    Comentarios() //=>ESTA ES EL INDICE 1
   ];
   @override
   Widget build(BuildContext context) {
@@ -51,6 +53,13 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.green,
             ),
             label: 'configuracion de sensores',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.comment,
+              color: Colors.green,
+            ),
+            label: 'Comentarios',
           ),
         ],
       ),

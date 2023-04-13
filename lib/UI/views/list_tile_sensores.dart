@@ -1,9 +1,12 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class datosSensores extends StatelessWidget {
-  const datosSensores({
+  datosSensores({
     super.key,
   });
+  // final databaseReference = FirebaseDatabase.instance.ref();
+  // final dataReference = FirebaseDatabase.instance.ref().child('dht11-1');
 
   @override
   Widget build(BuildContext context) {

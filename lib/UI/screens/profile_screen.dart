@@ -38,7 +38,7 @@ class Perfil extends StatelessWidget {
                     style: TextStyle(color: Colors.black),
                   ),
                   subtitle: const Text(
-                    'nombre.text',
+                    'UTT',
                     style: TextStyle(color: Colors.black),
                   ),
                   leading: const Icon(
