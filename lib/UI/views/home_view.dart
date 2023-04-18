@@ -15,12 +15,12 @@ class homeView extends StatelessWidget {
           actions: [
             IconButton(
               icon: const Icon(
-                Icons.person,
+                Icons.logout_rounded,
                 color: Colors.green,
               ),
-              tooltip: 'ver mi perfil',
+              tooltip: 'Cerrar sesion',
               onPressed: () {
-                Navigator.pushNamed(context, 'viewPerfil');
+                Navigator.pushNamed(context, 'inicio');
               },
             )
           ],
@@ -36,35 +36,13 @@ class homeView extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Icon(
-                        Icons.leaderboard,
-                        color: Colors.green,
-                      ),
                       Container(
                         margin: const EdgeInsets.only(top: 20),
                         child: const Text(
-                          'Entra y visualiza los ultimos datos',
-                          style: TextStyle(color: Colors.black),
+                          '¡Recomendaciones sobre plantas!',
+                          style: TextStyle(color: Colors.black, fontSize: 20),
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 15),
-                        child: Column(
-                          children: [
-                            MaterialButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                    side:
-                                        const BorderSide(color: Colors.green)),
-                                child: Text(
-                                  'Visualizar',
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                                color: Colors.green,
-                                onPressed: () {})
-                          ],
-                        ),
-                      )
                     ],
                   ),
                 )),

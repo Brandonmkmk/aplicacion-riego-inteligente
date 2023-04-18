@@ -2,16 +2,16 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 
-class Sensor1 extends StatefulWidget {
-  const Sensor1({Key? key}) : super(key: key);
+class Humedad2 extends StatefulWidget {
+  const Humedad2({Key? key}) : super(key: key);
 
   @override
-  State<Sensor1> createState() => _Sensor1State();
+  State<Humedad2> createState() => _Humedad2();
 }
 
-class _Sensor1State extends State<Sensor1> {
+class _Humedad2 extends State<Humedad2> {
   DatabaseReference dataBaseRef =
-      FirebaseDatabase.instance.ref().child('dht11-1');
+      FirebaseDatabase.instance.ref().child('FC28-2');
 
   // Widget listItem({required Map dht11}) {
   //   return Container(
@@ -39,7 +39,7 @@ class _Sensor1State extends State<Sensor1> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: const Text(
-          'Dht11-1',
+          'FC28-2',
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -49,7 +49,7 @@ class _Sensor1State extends State<Sensor1> {
             query: dataBaseRef,
             itemBuilder: (context, snapshot, animation, index) {
               return ListTile(
-                title: Text('Datos en tiempo real:'),
+                title: Text('Humedad:'),
                 trailing: Icon(
                   Icons.podcasts,
                   color: Colors.green,

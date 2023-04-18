@@ -1,89 +1,63 @@
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
 
-class Humedad extends StatelessWidget {
-  const Humedad({super.key});
+class Humedad extends StatefulWidget {
+  const Humedad({Key? key}) : super(key: key);
+
+  @override
+  State<Humedad> createState() => _Humedad();
+}
+
+class _Humedad extends State<Humedad> {
+  DatabaseReference dataBaseRef =
+      FirebaseDatabase.instance.ref().child('FC28-1');
+
+  // Widget listItem({required Map dht11}) {
+  //   return Container(
+  //     margin: const EdgeInsets.all(20),
+  //     padding: const EdgeInsets.all(20),
+  //     child: Column(
+  //       children: [
+  //         Text(
+  //           dht11['humedad'],
+  //           style: TextStyle(color: Colors.black),
+  //         ),
+  //         Text(
+  //           dht11['temperatura'],
+  //           style: TextStyle(color: Colors.black),
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final Data = [
-      datos_humedad(humedad: 10, suelo: 20),
-      datos_humedad(humedad: 5, suelo: 3),
-      datos_humedad(humedad: 15, suelo: 22)
-    ];
-    List<charts.Series<datos_humedad, int>> series = [
-      charts.Series<datos_humedad, int>(
-          id: 'linea 1',
-          domainFn: (v, i) => v.humedad,
-          measureFn: (v, i) => v.suelo,
-          data: Data)
-    ];
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: const Text(
-            'HUMEDAD',
-            style: TextStyle(color: Colors.black),
-          ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: const Text(
+          'FC28-1',
+          style: TextStyle(color: Colors.black),
         ),
-        body: ListView(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(top: 30),
-              alignment: Alignment.center,
-              child: const Text(
-                'Datos recabados del sensor',
-                style: TextStyle(fontSize: 30),
-              ),
-            ),
-            SizedBox(
-              height: 250,
-              child: charts.LineChart(series),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 45),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment
-                    .center, //se centra el boton horizontalmente
-                children: [
-                  MaterialButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
-                    child: const Text(
-                      'Activar riego ',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    color: Colors.green,
-                    onPressed: () {},
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                          margin: const EdgeInsets.only(top: 20),
-                          child: Icon(
-                            Icons.schedule,
-                            color: Colors.green,
-                          )),
-                      Container(
-                          margin: const EdgeInsets.only(top: 6),
-                          child: const Expanded(
-                            child: Text(
-                                'Se recomienda activar el riego cuando el sensor humedad este menos del 50%'),
-                          ))
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ],
-        ));
+      ),
+      body: Container(
+        margin: EdgeInsets.only(top: 200),
+        child: FirebaseAnimatedList(
+            query: dataBaseRef,
+            itemBuilder: (context, snapshot, animation, index) {
+              return ListTile(
+                title: Text('Humedad:'),
+                trailing: Icon(
+                  Icons.podcasts,
+                  color: Colors.green,
+                ),
+                subtitle: Text(snapshot.value.toString()),
+              );
+            }),
+      ),
+    );
   }
-}
-
-class datos_humedad {
-  final int humedad;
-  final int suelo;
-
-  datos_humedad({required this.humedad, required this.suelo});
 }

@@ -60,7 +60,7 @@ class datosSensores extends StatelessWidget {
                     ),
                     color: Colors.green,
                     onPressed: () {
-                      Navigator.pushNamed(context, 'grafica_dht11');
+                      Navigator.pushNamed(context, 'grafica2_dht112');
                     })),
             ListTile(
                 title: const Text(
@@ -68,7 +68,7 @@ class datosSensores extends StatelessWidget {
                   style: TextStyle(color: Colors.black),
                 ),
                 subtitle: const Text(
-                  'Humedad',
+                  'FC28-1',
                   style: TextStyle(color: Colors.black),
                 ),
                 leading: const Icon(
@@ -92,7 +92,7 @@ class datosSensores extends StatelessWidget {
                   style: TextStyle(color: Colors.black),
                 ),
                 subtitle: const Text(
-                  'Humedad',
+                  'FC28-2',
                   style: TextStyle(color: Colors.black),
                 ),
                 leading: const Icon(
@@ -108,7 +108,7 @@ class datosSensores extends StatelessWidget {
                     ),
                     color: Colors.green,
                     onPressed: () {
-                      Navigator.pushNamed(context, 'grafica_humedad');
+                      Navigator.pushNamed(context, 'grafica_humedad2');
                     })),
             ListTile(
                 title: const Text(
@@ -116,7 +116,7 @@ class datosSensores extends StatelessWidget {
                   style: TextStyle(color: Colors.black),
                 ),
                 subtitle: const Text(
-                  'Humedad',
+                  'FC28-3',
                   style: TextStyle(color: Colors.black),
                 ),
                 leading: const Icon(
@@ -132,7 +132,7 @@ class datosSensores extends StatelessWidget {
                     ),
                     color: Colors.green,
                     onPressed: () {
-                      Navigator.pushNamed(context, 'grafica_humedad');
+                      Navigator.pushNamed(context, 'grafica_humedad3');
                     })),
             ListTile(
                 title: const Text(

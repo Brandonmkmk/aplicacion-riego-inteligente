@@ -94,6 +94,8 @@ class Comentarios extends StatelessWidget {
                                   ),
                                 );
                               });
+                          gmail.clear();
+                          msj.clear();
                         } else if (correo.length <= 10 || mensaje.length <= 3) {
                           showDialog(
                               context: context,
@@ -110,6 +112,8 @@ class Comentarios extends StatelessWidget {
                                   ),
                                 );
                               });
+                          gmail.clear();
+                          msj.clear();
                         } else {
                           showDialog(
                               context: context,
@@ -126,6 +130,8 @@ class Comentarios extends StatelessWidget {
                                   ),
                                 );
                               });
+                          gmail.clear();
+                          msj.clear();
                         }
                       }))
             ],

@@ -17,12 +17,12 @@ class configuracionView extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(
-              Icons.person,
+              Icons.login_rounded,
               color: Colors.green,
             ),
-            tooltip: 'ver mi perfil',
+            tooltip: 'Cerrar sesion',
             onPressed: () {
-              Navigator.pushNamed(context, 'viewPerfil');
+              Navigator.pushNamed(context, 'inicio');
             },
           )
         ],
@@ -47,7 +47,7 @@ class configuracionView extends StatelessWidget {
               margin: const EdgeInsets.only(top: 25),
               child: const Expanded(
                 child: Text(
-                  'El sistema de riego esta programado para que cuando los sensores manden cierta cantidad especifica de humedad, este se active automaticamente,pero tambien se tiene la opcion de activarlo cuando el usuario lo requiera.',
+                  'El sistema de riego esta programado para que cuando los sensores manden cierta cantidad especifica de humedad o temperatura, este se active automaticamente,pero tambien se tiene la opcion de activarlo cuando el usuario lo requiera.',
                   textAlign: TextAlign.justify,
                 ),
               ),

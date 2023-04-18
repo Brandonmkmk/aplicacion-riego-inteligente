@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '588116752649',
     projectId: 'riego-inteligente-e4a28',
     authDomain: 'riego-inteligente-e4a28.firebaseapp.com',
+    databaseURL: 'https://riego-inteligente-e4a28-default-rtdb.firebaseio.com/',
     storageBucket: 'riego-inteligente-e4a28.appspot.com',
     measurementId: 'G-T8PN8T5LNZ',
   );
@@ -58,6 +59,7 @@ class DefaultFirebaseOptions {
     appId: '1:588116752649:android:01516fd5b0fd26890ffbd8',
     messagingSenderId: '588116752649',
     projectId: 'riego-inteligente-e4a28',
+    databaseURL: 'https://riego-inteligente-e4a28-default-rtdb.firebaseio.com/',
     storageBucket: 'riego-inteligente-e4a28.appspot.com',
   );
 
@@ -67,7 +69,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '588116752649',
     projectId: 'riego-inteligente-e4a28',
     storageBucket: 'riego-inteligente-e4a28.appspot.com',
-    iosClientId: '588116752649-4708cbjnbbnn11kbd7jq67o3bs5mjnha.apps.googleusercontent.com',
+    iosClientId:
+        '588116752649-4708cbjnbbnn11kbd7jq67o3bs5mjnha.apps.googleusercontent.com',
     iosBundleId: 'com.example.aplicacionRiego',
   );
 
@@ -77,7 +80,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '588116752649',
     projectId: 'riego-inteligente-e4a28',
     storageBucket: 'riego-inteligente-e4a28.appspot.com',
-    iosClientId: '588116752649-4708cbjnbbnn11kbd7jq67o3bs5mjnha.apps.googleusercontent.com',
+    iosClientId:
+        '588116752649-4708cbjnbbnn11kbd7jq67o3bs5mjnha.apps.googleusercontent.com',
     iosBundleId: 'com.example.aplicacionRiego',
   );
 }
